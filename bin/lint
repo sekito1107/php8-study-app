@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "Running Rubocop..."
+bundle exec rubocop
+
+echo "Running Prettier..."
+yarn prettier --check '**/*.{js,ts,jsx,tsx,css,scss,html}'
+
+echo "Running Slim-Lint..."
+bundle exec slim-lint app/views
+
+echo "Linting complete!"
