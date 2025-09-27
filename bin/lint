@@ -1,12 +1,43 @@
 #!/usr/bin/env bash
 
+# デフォルトはチェックモード
+MODE="check"
+
+# 引数で指定があれば切り替え
+if [[ "$1" == "fix" ]]; then
+  MODE="fix"
+fi
+
+echo "Lint mode: $MODE"
+
+# ---------------------
+# Rubocop
+# ---------------------
 echo "Running Rubocop..."
-bundle exec rubocop
+if [[ "$MODE" == "fix" ]]; then
+  bundle exec rubocop -a
+else
+  bundle exec rubocop
+fi
 
+# ---------------------
+# Prettier
+# ---------------------
 echo "Running Prettier..."
-yarn prettier --check '**/*.{js,ts,jsx,tsx,css,scss,html}'
+if [[ "$MODE" == "fix" ]]; then
+  yarn prettier --write '**/*.{js,ts,jsx,tsx,css,scss,html}'
+else
+  yarn prettier --check '**/*.{js,ts,jsx,tsx,css,scss,html}'
+fi
 
+# ---------------------
+# Slim-Lint
+# ---------------------
 echo "Running Slim-Lint..."
-bundle exec slim-lint app/views
+if [[ "$MODE" == "fix" ]]; then
+  bundle exec slim-lint -a app/views
+else
+  bundle exec slim-lint app/views
+fi
 
 echo "Linting complete!"
