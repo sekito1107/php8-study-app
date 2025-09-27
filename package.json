@@ -1,0 +1,11 @@
+{
+  "name": "php8_study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sekito1107/php8-study-app",
+  "author": "sekito <sekito1107gg@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
