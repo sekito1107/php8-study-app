@@ -7,5 +7,12 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.14",
+    "tailwindcss": "^4.1.14"
+  },
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   }
 }
