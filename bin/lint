@@ -35,7 +35,7 @@ fi
 # ---------------------
 echo "Running Slim-Lint..."
 if [[ "$MODE" == "fix" ]]; then
-  bundle exec slim-lint -a app/views
+  bundle exec slim-lint app/views
 else
   bundle exec slim-lint app/views
 fi
