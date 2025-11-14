@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def create
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
     Rails.logger.debug(auth.inspect)
 
     user = User.find_or_create_by(github_id: auth.uid)
@@ -8,9 +10,15 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     session[:github_info] = auth.info.slice(:nickname, :image)
 
-    redirect_to root_path, notice: 'ログインしました'
+    redirect_to root_path, notice: "ログインしました"
   rescue => e
     Rails.logger.error("GitHub OAuth Error: #{e.message}")
-    redirect_to root_path, alert: 'ログインに失敗しました'
+    redirect_to root_path, alert: "ログインに失敗しました"
+  end
+
+  def destroy
+    reset_session
+    @current_user = nil
+    redirect_to root_path, notice: "ログアウトしました"
   end
 end
