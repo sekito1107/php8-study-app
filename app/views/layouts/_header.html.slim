@@ -1,0 +1,9 @@
+header.bg-gray-50.shadow-sm.max-w-screen-xl.mx-auto
+  .py-4.px-6.flex.items-center.justify-between
+    .text-lg.font-bold.text-gray-800
+      | PHP8技術者認定初級試験スタディ
+    .flex.items-center.gap-4
+      .flex.flex-col.text-right.text-sm
+        span= session[:github_info]["nickname"]
+        = link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "text-red-500 hover:underline"
+      = image_tag session[:github_info]["image"], class: "w-10 h-10 rounded-full"
