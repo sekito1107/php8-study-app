@@ -8,7 +8,12 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
-  body
-    - if current_user 
+  body class="min-h-screen flex flex-col"
+    - if current_user
       = render "layouts/header"
-    = yield
+
+    main.flex-1.max-w-screen-xl.mx-auto.w-full
+      = yield
+
+    - if current_user
+      = render "layouts/footer"
